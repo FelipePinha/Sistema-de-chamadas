@@ -1,0 +1,80 @@
+@import '../../styles/theme';
+
+body {
+    background-color: $black;
+    color: $blue-900;
+}
+
+.center {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.2rem;
+}
+
+.login-box {
+    background-color: $white;
+    max-width: 60rem;
+    width: 1140px;
+    text-align: center;
+}
+
+.login-box header {
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $blue-900;
+}
+
+.login-box header img {
+    width: 7rem;
+}
+
+.login-content {
+    background-color: $gray-300;
+    padding-bottom: 1.5rem;
+}
+
+.login-content h1 {
+    font-size: 2.8rem;
+}
+
+.login-content form {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    gap: 1.5rem;
+}
+
+.login-content form input {
+    padding: 1rem;
+    border-radius: 0.8rem;
+    border: none;
+    outline: none;
+    font-size: 1.6rem;
+}
+
+.login-content button {
+    background-color: $blue-900;
+    color: $white;
+    font-weight: 700;
+    font-size: 1.8rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+
+.login-content button:hover {
+    background-color: $blue-800;
+}
+
+.login-content a {
+    text-decoration: none;
+    color: $black;
+    font-size: 1.6rem;
+}

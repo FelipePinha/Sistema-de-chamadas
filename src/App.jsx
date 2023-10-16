@@ -1,7 +1,12 @@
+import { Outlet } from 'react-router-dom';
 import './styles/app.scss';
 
 const App = () => {
-    return <h1>Hello React APP</h1>;
+    return (
+        <>
+            <Outlet />
+        </>
+    );
 };
 
 export default App;
