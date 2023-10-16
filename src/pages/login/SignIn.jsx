@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import ReactLogo from '../../assets/react.svg';
-import './_SignIn.scss';
+import './_Login.scss';
 
 export const SignIn = () => {
     const handleLoginUser = e => {
@@ -17,7 +17,7 @@ export const SignIn = () => {
                 <div className="login-content">
                     <form onSubmit={handleLoginUser}>
                         <h1>Entrar</h1>
-                        <input type="email" placeholder="Digite seu email" />
+                        <input type="email" placeholder="email@email.com" />
                         <input type="password" placeholder="******" />
                         <button type="submit">Acessar</button>
                     </form>
