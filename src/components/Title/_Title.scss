@@ -1,0 +1,16 @@
+@import '../../styles/theme';
+
+.title-container {
+    width: 100%;
+    padding: 1rem;
+    background-color: $white;
+    border-radius: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 500;
+    }
+}
