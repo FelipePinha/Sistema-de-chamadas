@@ -1,0 +1,110 @@
+@import '../../styles/theme';
+@import '../../styles/mixin';
+
+body {
+    background-color: $gray-500;
+}
+
+.dashboard {
+    @include grid-area;
+
+    .dashboard-content {
+        padding: 2rem;
+
+        .new-order-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            background-color: $light-green;
+            color: $white;
+            width: 15rem;
+            height: 4rem;
+            border-radius: 1rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-decoration: none;
+            float: right;
+            margin: 2rem 0 1.5rem;
+            transition: 0.1s ease-in;
+
+            &:hover {
+                background-color: $green;
+                transform: scale(1.1);
+            }
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            border: 1px solid $gray-500;
+            border-collapse: collapse;
+            background-color: $white;
+
+            thead tr th {
+                font-size: 1.4rem;
+                padding: 1rem 0;
+            }
+
+            tbody tr td {
+                text-align: center;
+                font-size: 1.4rem;
+                border-top: 1px solid $gray-500;
+                padding: 0.62rem 0;
+
+                .badge {
+                    background-color: $green;
+                    color: $white;
+                    padding: 0.5rem;
+                    border-radius: 0.8rem;
+                }
+            }
+
+            .table-actions {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.6rem;
+
+                button {
+                    background-color: $blue;
+                    color: $white;
+                    border: none;
+                    border-radius: 0.5rem;
+                    padding: 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                }
+
+                .edit-order-link {
+                    background-color: $orange;
+                    color: $white;
+                    border: none;
+                    border-radius: 0.5rem;
+                    padding: 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .show-more {
+            background-color: $blue-900;
+            color: $white;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.6rem;
+            margin-top: 2rem;
+            cursor: pointer;
+            transition: background-color 0.1s;
+
+            &:hover {
+                background-color: $blue-800;
+            }
+        }
+    }
+}
