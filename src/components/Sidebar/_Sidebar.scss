@@ -25,6 +25,12 @@
         display: flex;
         flex-direction: column;
 
+        button.nav-item {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
         .nav-item {
             padding: 1.5rem;
             display: flex;

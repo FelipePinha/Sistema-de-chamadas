@@ -1,4 +1,4 @@
-import { House, User, Gear } from '@phosphor-icons/react';
+import { House, User, Gear, DoorOpen } from '@phosphor-icons/react';
 import UserPic from '../../assets/user-pic.png';
 import './_Sidebar.scss';
 import { Link } from 'react-router-dom';
@@ -19,10 +19,14 @@ export const Sidebar = () => {
                         <User size={26} />
                         Clientes
                     </Link>
-                    <Link to="/dashboard" className="nav-item">
+                    <Link to="/perfil" className="nav-item">
                         <Gear size={26} />
                         Configurações
                     </Link>
+                    <button className="nav-item">
+                        <DoorOpen size={26} />
+                        Sair
+                    </button>
                 </nav>
             </header>
         </aside>
