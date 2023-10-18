@@ -15,7 +15,7 @@ export const Sidebar = () => {
                         <House size={26} />
                         Chamados
                     </Link>
-                    <Link to="/dashboard" className="nav-item">
+                    <Link to="/clientes" className="nav-item">
                         <User size={26} />
                         Clientes
                     </Link>
