@@ -22,7 +22,7 @@ export const Customers = () => {
                             />
                         </div>
                         <div className="customers-form-control">
-                            <label htmlFor="cnpj">Nome da Empresa</label>
+                            <label htmlFor="cnpj">CNPJ</label>
                             <input type="text" name="cnpj" placeholder="Seu CNPJ" />
                         </div>
                         <div className="customers-form-control">
