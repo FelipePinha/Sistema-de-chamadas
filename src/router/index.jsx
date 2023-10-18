@@ -6,6 +6,7 @@ import { SignUp } from '../pages/login/SignUp';
 import { Dashboard } from '../pages/Dashboard/Dashboard';
 import { Customers } from '../pages/Customers/Customers';
 import { Profile } from '../pages/Profile/Profile';
+import { NewOrder } from '../pages/NewOrder/NewOrder';
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path: '/perfil',
                 element: <Profile />,
+            },
+            {
+                path: '/new',
+                element: <NewOrder />,
             },
         ],
     },

@@ -12,7 +12,7 @@ export const Dashboard = () => {
             <Sidebar />
             <section className="dashboard-content">
                 <Title title="Atendimentos" icon={<Chat size={30} />} />
-                <Link className="new-order-link">
+                <Link to="/new" className="new-order-link">
                     <Plus />
                     Novo Chamado
                 </Link>
