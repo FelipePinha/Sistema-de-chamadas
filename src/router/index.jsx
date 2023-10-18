@@ -4,6 +4,7 @@ import App from '../App';
 import { SignIn } from '../pages/login/SignIn';
 import { SignUp } from '../pages/login/SignUp';
 import { Dashboard } from '../pages/Dashboard/Dashboard';
+import { Customers } from '../pages/Customers/Customers';
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Dashboard />,
+            },
+            {
+                path: '/clientes',
+                element: <Customers />,
             },
         ],
     },
