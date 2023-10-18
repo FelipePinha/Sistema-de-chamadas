@@ -1,0 +1,63 @@
+@import '../../styles/theme';
+@import '../../styles/mixin';
+
+.profile {
+    @include grid-area;
+
+    .profile-content {
+        padding: 2rem;
+
+        .profile-form {
+            margin-top: 2rem;
+            background-color: $white;
+            border-radius: 0.8rem;
+            padding: 2rem;
+
+            img {
+                max-width: 20rem;
+            }
+
+            .profile-form-control {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                margin-top: 1.2rem;
+                gap: 0.5rem;
+
+                label {
+                    font-size: 1.6rem;
+                    color: $black;
+                }
+
+                input {
+                    background-color: $gray-300;
+                    padding: 1.2rem;
+                    border: none;
+                    border-radius: 0.8rem;
+                    outline: none;
+                }
+
+                input[type='email'] {
+                    cursor: not-allowed;
+                }
+            }
+
+            button {
+                width: 50%;
+                margin-top: 2rem;
+                background-color: $blue-900;
+                color: $white;
+                font-size: 1.8rem;
+                padding: 0.8rem;
+                border: none;
+                border-radius: 0.8rem;
+                cursor: pointer;
+                transition: background-color 0.1s;
+
+                &:hover {
+                    background-color: $blue-800;
+                }
+            }
+        }
+    }
+}
