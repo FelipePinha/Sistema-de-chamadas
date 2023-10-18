@@ -52,6 +52,10 @@
                     background-color: $blue-800;
                 }
             }
+
+            @media (max-width: 768px) {
+                width: 100%;
+            }
         }
     }
 }

@@ -40,6 +40,10 @@
                 input[type='email'] {
                     cursor: not-allowed;
                 }
+
+                @media (max-width: 768px) {
+                    width: 100%;
+                }
             }
 
             button {
@@ -53,6 +57,10 @@
                 border-radius: 0.8rem;
                 cursor: pointer;
                 transition: background-color 0.1s;
+
+                @media (max-width: 768px) {
+                    width: 100%;
+                }
 
                 &:hover {
                     background-color: $blue-800;
