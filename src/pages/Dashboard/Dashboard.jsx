@@ -24,56 +24,44 @@ export const Dashboard = () => {
                             <th>ASSUNTO</th>
                             <th>STATUS</th>
                             <th>CADASTRO EM</th>
-                            <th>#</th>
+                            <th>AÇÕES</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Mandrake</td>
-                            <td>Suporte</td>
-                            <td>
+                            <td data-label="Cliente">Mandrake</td>
+                            <td data-label="Assunto">Suporte</td>
+                            <td data-label="Status">
                                 <span className="badge">Aberto</span>
                             </td>
-                            <td>17/10/2023</td>
-                            <td className="table-actions">
-                                <button>
-                                    <MagnifyingGlass size={16} />
-                                </button>
-                                <Link className="edit-order-link">
-                                    <PencilSimple size={16} />
-                                </Link>
+                            <td data-label="Cadastrado">17/10/2023</td>
+                            <td data-label="Ações" className="table-actions">
+                                <div className="actions">
+                                    <button>
+                                        <MagnifyingGlass size={16} />
+                                    </button>
+                                    <Link className="edit-order-link">
+                                        <PencilSimple size={16} />
+                                    </Link>
+                                </div>
                             </td>
                         </tr>
                         <tr>
-                            <td>Mandrake</td>
-                            <td>Suporte</td>
-                            <td>
+                            <td data-label="Cliente">Mandrake</td>
+                            <td data-label="Assunto">Suporte</td>
+                            <td data-label="Status">
                                 <span className="badge">Aberto</span>
                             </td>
-                            <td>17/10/2023</td>
-                            <td className="table-actions">
-                                <button>
-                                    <MagnifyingGlass size={16} />
-                                </button>
-                                <Link className="edit-order-link">
-                                    <PencilSimple size={16} />
-                                </Link>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mandrake</td>
-                            <td>Suporte</td>
-                            <td>
-                                <span className="badge">Aberto</span>
-                            </td>
-                            <td>17/10/2023</td>
-                            <td className="table-actions">
-                                <button>
-                                    <MagnifyingGlass size={16} />
-                                </button>
-                                <Link className="edit-order-link">
-                                    <PencilSimple size={16} />
-                                </Link>
+                            <td data-label="Cadastrado">17/10/2023</td>
+                            <td data-label="Ações" className="table-actions">
+                                <div className="actions">
+                                    <button>
+                                        <MagnifyingGlass size={16} />
+                                    </button>
+                                    <Link className="edit-order-link">
+                                        <PencilSimple size={16} />
+                                    </Link>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

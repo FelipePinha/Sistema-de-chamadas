@@ -61,32 +61,66 @@ body {
             }
 
             .table-actions {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 0.6rem;
-
-                button {
-                    background-color: $blue;
-                    color: $white;
-                    border: none;
-                    border-radius: 0.5rem;
-                    padding: 0.5rem;
+                .actions {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    cursor: pointer;
+                    gap: 0.6rem;
+
+                    button {
+                        background-color: $blue;
+                        color: $white;
+                        border: none;
+                        border-radius: 0.5rem;
+                        padding: 0.5rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                    }
+
+                    .edit-order-link {
+                        background-color: $orange;
+                        color: $white;
+                        border: none;
+                        border-radius: 0.5rem;
+                        padding: 0.5rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+
+            @media (max-width: 425px) {
+                border: 0;
+
+                th {
+                    display: none;
                 }
 
-                .edit-order-link {
-                    background-color: $orange;
-                    color: $white;
-                    border: none;
-                    border-radius: 0.5rem;
-                    padding: 0.5rem;
+                tr {
+                    padding: 4rem;
+                    border-bottom: 0.8rem solid $gray-500;
+                }
+
+                td {
                     display: flex;
-                    align-items: center;
-                    justify-content: center;
+                    justify-content: space-between;
+                    border-bottom: 0.1rem solid $gray-500;
+                    margin: 0 1rem;
+
+                    &::before {
+                        content: attr(data-label);
+                        float: left;
+                        font-weight: 700;
+                        text-transform: capitalize;
+                    }
+
+                    &:first-child {
+                        margin-top: 1.2rem;
+                        border-top: 0;
+                    }
                 }
             }
         }
