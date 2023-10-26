@@ -1,19 +1,18 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useMutation, QueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import ReactLogo from '../../assets/react.svg';
 import './_Login.scss';
 
-const queryClient = new QueryClient();
-
 export const SignUp = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const queryClient = useQueryClient();
     const navigate = useNavigate();
 
     const mutation = useMutation({
