@@ -1,12 +1,22 @@
+import { useEffect } from 'react';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { Title } from '../../components/Title/Title';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Chat, Plus, MagnifyingGlass, PencilSimple } from '@phosphor-icons/react';
 
 import './_Dashboard.scss';
 
 export const Dashboard = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const hasUser = localStorage.getItem('user');
+        if (hasUser === null) {
+            navigate('/');
+        }
+    }, []);
+
     return (
         <div className="dashboard">
             <Sidebar />

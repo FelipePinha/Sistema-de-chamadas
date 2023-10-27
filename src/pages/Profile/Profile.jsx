@@ -1,12 +1,23 @@
+import { useEffect } from 'react';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { Title } from '../../components/Title/Title';
 import { Gear } from '@phosphor-icons/react';
+import { useNavigate } from 'react-router-dom';
 
 import UserPic from '../../assets/user-pic.png';
 
 import './_Profile.scss';
 
 export const Profile = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const hasUser = localStorage.getItem('user');
+        if (hasUser === null) {
+            navigate('/');
+        }
+    }, []);
+
     return (
         <div className="profile">
             <Sidebar />

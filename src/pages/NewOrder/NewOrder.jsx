@@ -1,10 +1,21 @@
+import { useEffect } from 'react';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { Title } from '../../components/Title/Title';
 import { PlusCircle } from '@phosphor-icons/react';
+import { useNavigate } from 'react-router-dom';
 
 import './_NewOrder.scss';
 
 export const NewOrder = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const hasUser = localStorage.getItem('user');
+        if (hasUser === null) {
+            navigate('/');
+        }
+    }, []);
+
     return (
         <div className="new-order">
             <Sidebar />

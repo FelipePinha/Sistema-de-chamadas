@@ -1,10 +1,21 @@
+import { useEffect } from 'react';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { Title } from '../../components/Title/Title';
 import { User } from '@phosphor-icons/react';
+import { useNavigate } from 'react-router-dom';
 
 import './_Customers.scss';
 
 export const Customers = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const hasUser = localStorage.getItem('user');
+        if (hasUser === null) {
+            navigate('/');
+        }
+    }, []);
+
     return (
         <div className="customers">
             <Sidebar />
