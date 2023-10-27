@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import fetchApi from '../../axios/axiosConfig';
 
 import ReactLogo from '../../assets/react.svg';
 import './_Login.scss';
+import { useEffect } from 'react';
 
 export const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -14,10 +15,17 @@ export const SignIn = () => {
     const queryClient = useQueryClient();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const hasUser = localStorage.getItem('user');
+        if (hasUser !== null) {
+            navigate('/dashboard');
+        }
+    });
+
     const mutation = useMutation({
         mutationFn: async user => {
-            await axios
-                .post('http://localhost:3333/api/login', user)
+            await fetchApi
+                .post('/login', user)
                 .then(res => {
                     const { password, ...LoggedUser } = res.data;
                     localStorage.setItem('user', JSON.stringify(LoggedUser));

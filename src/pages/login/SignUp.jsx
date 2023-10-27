@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import fetchApi from '../../axios/axiosConfig';
 
 import ReactLogo from '../../assets/react.svg';
 import './_Login.scss';
@@ -15,10 +15,17 @@ export const SignUp = () => {
     const queryClient = useQueryClient();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const hasUser = localStorage.getItem('user');
+        if (hasUser !== null) {
+            navigate('/dashboard');
+        }
+    });
+
     const mutation = useMutation({
         mutationFn: async newUser => {
-            await axios
-                .post('http://localhost:3333/api/register', newUser)
+            await fetchApi
+                .post('/register', newUser)
                 .then(res => {
                     const { password, ...user } = res.data;
                     localStorage.setItem('user', JSON.stringify(user));
