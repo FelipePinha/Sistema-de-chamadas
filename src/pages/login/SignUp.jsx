@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import fetchApi from '../../axios/axiosConfig';
+import { useUser } from '../../hooks/useUser';
 
 import ReactLogo from '../../assets/react.svg';
 import './_Login.scss';
@@ -12,32 +11,14 @@ export const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const queryClient = useQueryClient();
     const navigate = useNavigate();
+    const { registerUserMutation } = useUser();
 
     useEffect(() => {
         const hasUser = localStorage.getItem('user');
         if (hasUser !== null) {
             navigate('/dashboard');
         }
-    });
-
-    const mutation = useMutation({
-        mutationFn: async newUser => {
-            await fetchApi
-                .post('/register', newUser)
-                .then(res => {
-                    const { password, ...user } = res.data;
-                    localStorage.setItem('user', JSON.stringify(user));
-                    navigate('/dashboard');
-                })
-                .catch(reject => {
-                    console.log(reject.response.data);
-                });
-        },
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['users'] });
-        },
     });
 
     const handleRegisterUser = e => {
@@ -48,7 +29,7 @@ export const SignUp = () => {
             return;
         }
 
-        mutation.mutate({
+        registerUserMutation.mutate({
             username,
             email,
             password,

@@ -3,8 +3,7 @@ import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { Title } from '../../components/Title/Title';
 import { Gear } from '@phosphor-icons/react';
 import { useNavigate } from 'react-router-dom';
-import fetchApi from '../../axios/axiosConfig';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { useUser } from '../../hooks/useUser';
 
 import UserPic from '../../assets/user-pic.png';
 import './_Profile.scss';
@@ -15,7 +14,7 @@ export const Profile = () => {
     const [email, setEmail] = useState(localUser && localUser.email);
 
     const navigate = useNavigate();
-    const queryClient = useQueryClient();
+    const { updateUserMutation } = useUser();
 
     useEffect(() => {
         const hasUser = localStorage.getItem('user');
@@ -23,20 +22,6 @@ export const Profile = () => {
             navigate('/');
         }
     }, []);
-
-    const mutation = useMutation({
-        mutationFn: async newUsername => {
-            localUser.name = newUsername;
-
-            await fetchApi.put(`/user/${localUser.id}`, { name: newUsername }).then(res => {
-                localStorage.setItem('user', JSON.stringify(localUser));
-                console.log('nome alterado com sucesso');
-            });
-        },
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['users'] });
-        },
-    });
 
     const handleUpdateUserForm = e => {
         e.preventDefault();
@@ -46,7 +31,7 @@ export const Profile = () => {
             return;
         }
 
-        mutation.mutate(name);
+        updateUserMutation.mutate(name);
     };
 
     return (
