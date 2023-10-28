@@ -1,9 +1,17 @@
 import { House, User, Gear, DoorOpen } from '@phosphor-icons/react';
 import UserPic from '../../assets/user-pic.png';
+import { Link, useNavigate } from 'react-router-dom';
 import './_Sidebar.scss';
-import { Link } from 'react-router-dom';
 
 export const Sidebar = () => {
+    const navigate = useNavigate();
+
+    const handleExitUser = () => {
+        localStorage.removeItem('user');
+
+        navigate('/');
+    };
+
     return (
         <aside className="sidebar">
             <div className="banner">
@@ -23,7 +31,7 @@ export const Sidebar = () => {
                         <Gear size={26} />
                         Configurações
                     </Link>
-                    <button className="nav-item">
+                    <button className="nav-item" onClick={handleExitUser}>
                         <DoorOpen size={26} />
                         Sair
                     </button>
