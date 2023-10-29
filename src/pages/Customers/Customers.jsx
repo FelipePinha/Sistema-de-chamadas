@@ -3,8 +3,7 @@ import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { Title } from '../../components/Title/Title';
 import { User } from '@phosphor-icons/react';
 import { useNavigate } from 'react-router-dom';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
-import fetchApi from '../../axios/axiosConfig';
+import { useClient } from '../../hooks/useClient';
 
 import './_Customers.scss';
 
@@ -12,8 +11,9 @@ export const Customers = () => {
     const [name, setName] = useState('');
     const [cnpj, setCnpj] = useState('');
     const [address, setAddress] = useState('');
+
     const navigate = useNavigate();
-    const queryClient = useQueryClient();
+    const { registerCustomerMutation } = useClient();
 
     useEffect(() => {
         const hasUser = localStorage.getItem('user');
@@ -21,19 +21,6 @@ export const Customers = () => {
             navigate('/');
         }
     }, []);
-
-    const mutation = useMutation({
-        mutationFn: async newCompany => {
-            await fetchApi
-                .post('/client', newCompany)
-                .then(res => {
-                    console.log(res.data);
-                })
-                .catch(reject => {
-                    console.log(reject.response.data);
-                });
-        },
-    });
 
     const handleRegisterCustomer = e => {
         e.preventDefault();
@@ -43,7 +30,7 @@ export const Customers = () => {
             return;
         }
 
-        mutation.mutate({
+        registerCustomerMutation.mutate({
             name,
             cnpj,
             address,
