@@ -2,13 +2,17 @@ import { useEffect } from 'react';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { Title } from '../../components/Title/Title';
 import { Link, useNavigate } from 'react-router-dom';
+import { useOrder } from '../../hooks/useOrder';
 
-import { Chat, Plus, MagnifyingGlass, PencilSimple } from '@phosphor-icons/react';
+import { Chat, Plus } from '@phosphor-icons/react';
 
 import './_Dashboard.scss';
+import Order from '../../components/Order/Order';
 
 export const Dashboard = () => {
     const navigate = useNavigate();
+    const { listOrders } = useOrder();
+    const { data, isLoading } = listOrders();
 
     useEffect(() => {
         const hasUser = localStorage.getItem('user');
@@ -38,42 +42,13 @@ export const Dashboard = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td data-label="Cliente">Mandrake</td>
-                            <td data-label="Assunto">Suporte</td>
-                            <td data-label="Status">
-                                <span className="badge">Aberto</span>
-                            </td>
-                            <td data-label="Cadastrado">17/10/2023</td>
-                            <td data-label="Ações" className="table-actions">
-                                <div className="actions">
-                                    <button>
-                                        <MagnifyingGlass size={16} />
-                                    </button>
-                                    <Link className="edit-order-link">
-                                        <PencilSimple size={16} />
-                                    </Link>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td data-label="Cliente">Mandrake</td>
-                            <td data-label="Assunto">Suporte</td>
-                            <td data-label="Status">
-                                <span className="badge">Aberto</span>
-                            </td>
-                            <td data-label="Cadastrado">17/10/2023</td>
-                            <td data-label="Ações" className="table-actions">
-                                <div className="actions">
-                                    <button>
-                                        <MagnifyingGlass size={16} />
-                                    </button>
-                                    <Link className="edit-order-link">
-                                        <PencilSimple size={16} />
-                                    </Link>
-                                </div>
-                            </td>
-                        </tr>
+                        {isLoading ? (
+                            <tr>
+                                <td>Carregando...</td>
+                            </tr>
+                        ) : (
+                            data.map(order => <Order key={order.id} order={order} />)
+                        )}
                     </tbody>
                 </table>
 

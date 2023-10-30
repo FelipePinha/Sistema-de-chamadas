@@ -46,52 +46,6 @@ body {
                 padding: 1rem 0;
             }
 
-            tbody tr td {
-                text-align: center;
-                font-size: 1.4rem;
-                border-top: 1px solid $gray-500;
-                padding: 0.62rem 0;
-
-                .badge {
-                    background-color: $green;
-                    color: $white;
-                    padding: 0.5rem;
-                    border-radius: 0.8rem;
-                }
-            }
-
-            .table-actions {
-                .actions {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 0.6rem;
-
-                    button {
-                        background-color: $blue;
-                        color: $white;
-                        border: none;
-                        border-radius: 0.5rem;
-                        padding: 0.5rem;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        cursor: pointer;
-                    }
-
-                    .edit-order-link {
-                        background-color: $orange;
-                        color: $white;
-                        border: none;
-                        border-radius: 0.5rem;
-                        padding: 0.5rem;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                }
-            }
-
             @media (max-width: 425px) {
                 border: 0;
 
