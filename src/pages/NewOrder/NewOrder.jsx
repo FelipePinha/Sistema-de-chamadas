@@ -53,7 +53,7 @@ export const NewOrder = () => {
                         <label htmlFor="client">Cliente</label>
                         <select
                             name="client"
-                            value={clients && clients[0].company_name}
+                            value={clientSelected}
                             onChange={e => setClientSelected(e.target.value)}
                         >
                             {isLoading ? (
