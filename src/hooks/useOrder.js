@@ -20,5 +20,16 @@ export const useOrder = () => {
         },
     });
 
-    return { registerOrderMutation };
+    const listOrders = () => {
+        return useQuery({
+            queryKey: ['orders'],
+            queryFn: async () => {
+                const { data } = await fetchApi.get('/orders');
+
+                return data;
+            },
+        });
+    };
+
+    return { registerOrderMutation, listOrders };
 };
