@@ -1,13 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { Title } from '../../components/Title/Title';
 import { PlusCircle } from '@phosphor-icons/react';
 import { useNavigate } from 'react-router-dom';
+import { useClient } from '../../hooks/useClient';
 
 import './_NewOrder.scss';
 
 export const NewOrder = () => {
+    const { getClients } = useClient();
     const navigate = useNavigate();
+
+    const { data: clients, isLoading } = getClients();
 
     useEffect(() => {
         const hasUser = localStorage.getItem('user');
@@ -25,9 +29,17 @@ export const NewOrder = () => {
                     <div className="new-order-form-control">
                         <label htmlFor="client">Cliente</label>
                         <select name="client">
-                            <option>empresa 1</option>
-                            <option>empresa 2</option>
-                            <option>empresa 3</option>
+                            {isLoading ? (
+                                <option>Carregando...</option>
+                            ) : clients.length > 0 ? (
+                                clients.map(client => (
+                                    <option key={client.id} value={client.company_name}>
+                                        {client.company_name}
+                                    </option>
+                                ))
+                            ) : (
+                                <option>Nenhuma empresa cadastrada</option>
+                            )}
                         </select>
                     </div>
                     <div className="new-order-form-control">

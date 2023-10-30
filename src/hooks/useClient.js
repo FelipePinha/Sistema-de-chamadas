@@ -1,4 +1,4 @@
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import fetchApi from '../axios/axiosConfig';
 
 export const useClient = () => {
@@ -15,9 +15,24 @@ export const useClient = () => {
                     console.log(reject.response.data);
                 });
         },
+        onSuccess: () => {
+            queryClient.invalidateQueries('clients');
+        },
     });
+
+    const getClients = () => {
+        return useQuery({
+            queryKey: ['clients'],
+            queryFn: async () => {
+                const { data } = await fetchApi.get('/client');
+
+                return data;
+            },
+        });
+    };
 
     return {
         registerCustomerMutation,
+        getClients,
     };
 };
