@@ -1,0 +1,22 @@
+@import '../../styles/theme';
+
+.open {
+    background-color: $green;
+    color: $white;
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+}
+
+.progress {
+    background-color: $orange;
+    color: $white;
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+}
+
+.closed {
+    background-color: $gray-700;
+    color: $white;
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+}
