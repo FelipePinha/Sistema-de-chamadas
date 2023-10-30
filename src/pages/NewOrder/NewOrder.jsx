@@ -41,6 +41,10 @@ export const NewOrder = () => {
             status,
             content,
         });
+
+        setContent('');
+        setSubject('Suporte');
+        setStatus('Aberto');
     };
 
     return (
@@ -78,7 +82,7 @@ export const NewOrder = () => {
                         >
                             <option value="suporte">Suporte</option>
                             <option value="financeiro">Financeiro</option>
-                            <option value="vistaTecnica">Vista técnica</option>
+                            <option value="vista tecnica">Vista técnica</option>
                         </select>
                     </div>
                     <div className="new-order-form-control">
