@@ -40,6 +40,7 @@ export const NewOrder = () => {
             subject,
             status,
             content,
+            createdat: Date.now(),
         });
 
         setContent('');
