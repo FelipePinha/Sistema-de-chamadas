@@ -1,0 +1,69 @@
+@import '../../styles/theme';
+
+.overlay {
+    background-color: rgba($color: $black, $alpha: 0.7);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    background-color: $white;
+    // padding: 2rem;
+    width: 100%;
+    max-width: 60rem;
+    border-radius: 0.8rem;
+
+    .modal-content {
+        padding: 0 1.5rem;
+    }
+
+    .close-modal-container {
+        padding: 1.5rem 0;
+
+        button {
+            background-color: $red;
+            color: $white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 0.5rem;
+            width: 9rem;
+            padding: 0.6rem 0;
+            gap: 0.4rem;
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+    }
+
+    .modal-details {
+        padding: 1.5rem 0;
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        .row {
+            margin: 1.5rem 0;
+
+            span {
+                font-size: 1.8rem;
+                margin-right: 2rem;
+                font-weight: 700;
+
+                i {
+                    font-weight: 400;
+                }
+
+                i.complement {
+                    display: block;
+                    margin-top: 0.5rem;
+                }
+            }
+        }
+    }
+}

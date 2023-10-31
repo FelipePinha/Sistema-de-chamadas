@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { Title } from '../../components/Title/Title';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,8 +8,12 @@ import { Chat, Plus } from '@phosphor-icons/react';
 
 import './_Dashboard.scss';
 import Order from '../../components/Order/Order';
+import Modal from '../../components/Modal/Modal';
 
 export const Dashboard = () => {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [currentSelectedOrder, setCurrentSelectedOrder] = useState({});
+
     const navigate = useNavigate();
     const { listOrders } = useOrder();
     const { data, isLoading } = listOrders();
@@ -47,13 +51,25 @@ export const Dashboard = () => {
                                 <td>Carregando...</td>
                             </tr>
                         ) : (
-                            data.map(order => <Order key={order.id} order={order} />)
+                            data.map(order => (
+                                <Order
+                                    key={order.id}
+                                    order={order}
+                                    setModalIsOpen={setModalIsOpen}
+                                    setCurrentSelectedOrder={setCurrentSelectedOrder}
+                                />
+                            ))
                         )}
                     </tbody>
                 </table>
 
                 <button className="show-more">Buscar Mais</button>
             </section>
+            <Modal
+                modalIsOpen={modalIsOpen}
+                setModalIsOpen={setModalIsOpen}
+                currentSelectedOrder={currentSelectedOrder}
+            />
         </div>
     );
 };

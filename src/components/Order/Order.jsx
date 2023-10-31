@@ -3,9 +3,17 @@ import { Link } from 'react-router-dom';
 import Badge from '../Badge/Badge';
 import './_Order.scss';
 
-const Order = ({ order }) => {
+const Order = ({ order, setModalIsOpen, setCurrentSelectedOrder }) => {
     const date = new Date();
     const formattedDate = date.toLocaleString('pt-BR', { timeZone: 'UTC' }).split(',')[0];
+
+    const handleOpenModal = () => {
+        const { createdat, ...orderWithFormattedDate } = order;
+        orderWithFormattedDate.createdat = formattedDate;
+
+        setCurrentSelectedOrder(orderWithFormattedDate);
+        setModalIsOpen(true);
+    };
 
     return (
         <tr>
@@ -15,7 +23,7 @@ const Order = ({ order }) => {
             <td data-label="Cadastrado">{formattedDate}</td>
             <td data-label="Ações" className="table-actions">
                 <div className="actions">
-                    <button>
+                    <button onClick={handleOpenModal}>
                         <MagnifyingGlass size={16} />
                     </button>
                     <Link className="edit-order-link">
