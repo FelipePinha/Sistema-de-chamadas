@@ -2,14 +2,13 @@ import { X } from '@phosphor-icons/react';
 import './_Modal.scss';
 
 const Modal = ({ modalIsOpen, setModalIsOpen, currentSelectedOrder }) => {
-    const visibilityStatus = modalIsOpen ? '' : 'hidden';
-
+    console.log(modalIsOpen);
     const handleCloseModal = () => {
         setModalIsOpen(false);
     };
 
     return (
-        <div className="overlay" style={{ visibility: visibilityStatus }}>
+        <div className="overlay" style={{ visibility: modalIsOpen ? 'visible' : 'hidden' }}>
             <div className="modal-box">
                 <div className="modal-content">
                     <div className="close-modal-container">
@@ -44,7 +43,7 @@ const Modal = ({ modalIsOpen, setModalIsOpen, currentSelectedOrder }) => {
                             </span>
                         </div>
                         <div className="row">
-                            <span className>
+                            <span>
                                 Complemento
                                 <i className="complement">{currentSelectedOrder.content}</i>
                             </span>

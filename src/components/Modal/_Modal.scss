@@ -10,6 +10,13 @@
     align-items: center;
 }
 
+.overlay.visible {
+    visibility: visible;
+}
+.overlay.hidden {
+    visibility: hidden;
+}
+
 .modal-box {
     background-color: $white;
     // padding: 2rem;

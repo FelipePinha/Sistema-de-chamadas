@@ -3,12 +3,12 @@ import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { Title } from '../../components/Title/Title';
 import { Link, useNavigate } from 'react-router-dom';
 import { useOrder } from '../../hooks/useOrder';
+import Order from '../../components/Order/Order';
+import Modal from '../../components/Modal/Modal';
 
 import { Chat, Plus } from '@phosphor-icons/react';
 
 import './_Dashboard.scss';
-import Order from '../../components/Order/Order';
-import Modal from '../../components/Modal/Modal';
 
 export const Dashboard = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
