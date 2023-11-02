@@ -27,7 +27,9 @@ export const Customers = () => {
         e.preventDefault();
 
         if (!name || !cnpj || !address) {
-            toast.error('Todos os campos devem ser preenchidos.');
+            toast.error('Todos os campos devem ser preenchidos.', {
+                theme: 'colored',
+            });
             return;
         }
 
