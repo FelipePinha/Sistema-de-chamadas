@@ -29,7 +29,7 @@ const Modal = ({ modalIsOpen, setModalIsOpen }) => {
                                 <i> {selectedOrder.company_name}</i>
                             </span>
                         </div>
-                        <div className="row">
+                        <div className="row row-flex">
                             <span>
                                 Assunto:
                                 <i> {selectedOrder.subject}</i>
