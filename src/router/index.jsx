@@ -37,6 +37,10 @@ const router = createBrowserRouter([
                 path: '/new',
                 element: <NewOrder />,
             },
+            {
+                path: '/new/:id',
+                element: <NewOrder />,
+            },
         ],
     },
 ]);
