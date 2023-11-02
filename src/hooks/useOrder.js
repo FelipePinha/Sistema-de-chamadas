@@ -20,6 +20,22 @@ export const useOrder = () => {
         },
     });
 
+    const updateOrder = useMutation({
+        mutationFn: async updatedOrder => {
+            await fetchApi
+                .put(`/orders/${updatedOrder.id}`, updatedOrder)
+                .then(res => {
+                    console.log(res.data);
+                })
+                .catch(reject => {
+                    console.log(reject.response.data);
+                });
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries('orders');
+        },
+    });
+
     const listOrders = () => {
         return useQuery({
             queryKey: ['orders'],
@@ -31,5 +47,16 @@ export const useOrder = () => {
         });
     };
 
-    return { registerOrderMutation, listOrders };
+    const listSelectedOrder = id => {
+        return useQuery({
+            queryKey: ['orders'],
+            queryFn: async () => {
+                const { data } = await fetchApi.get(`/orders/${id}`);
+
+                return data;
+            },
+        });
+    };
+
+    return { registerOrderMutation, listOrders, listSelectedOrder, updateOrder };
 };

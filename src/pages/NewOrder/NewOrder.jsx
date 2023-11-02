@@ -1,22 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { OrderContext } from '../../context/OrderContext';
 import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { Title } from '../../components/Title/Title';
 import { PlusCircle } from '@phosphor-icons/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useClient } from '../../hooks/useClient';
 import { useOrder } from '../../hooks/useOrder';
 
 import './_NewOrder.scss';
 
 export const NewOrder = () => {
+    const navigate = useNavigate();
+    const { id } = useParams();
+    const { selectedOrder } = useContext(OrderContext);
+    const { getClients } = useClient();
+    const { registerOrderMutation, updateOrder } = useOrder();
+
     const [clientSelected, setClientSelected] = useState('');
     const [subject, setSubject] = useState('Suporte');
     const [status, setStatus] = useState('Aberto');
     const [content, setContent] = useState('');
-
-    const { getClients } = useClient();
-    const { registerOrderMutation } = useOrder();
-    const navigate = useNavigate();
 
     const { data: clients, isLoading } = getClients();
 
@@ -24,6 +27,13 @@ export const NewOrder = () => {
         const hasUser = localStorage.getItem('user');
         if (hasUser === null) {
             navigate('/');
+        }
+
+        if (id) {
+            setClientSelected(selectedOrder.company_name);
+            setSubject(selectedOrder.subject);
+            setStatus(selectedOrder.status);
+            setContent(selectedOrder.content);
         }
     }, []);
 
@@ -35,7 +45,19 @@ export const NewOrder = () => {
             return;
         }
 
-        registerOrderMutation.mutate({
+        if (id) {
+            updateOrder.mutate({
+                id: selectedOrder.id,
+                company_name: clientSelected,
+                subject,
+                status,
+                content,
+            });
+
+            return;
+        }
+
+        registerOrderMutation.mutate(id, {
             company_name: clientSelected,
             subject,
             status,
