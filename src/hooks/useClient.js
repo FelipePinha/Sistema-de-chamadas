@@ -1,5 +1,6 @@
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import fetchApi from '../axios/axiosConfig';
+import { toast } from 'react-toastify';
 
 export const useClient = () => {
     const queryClient = useQueryClient();
@@ -8,11 +9,16 @@ export const useClient = () => {
         mutationFn: async newCompany => {
             await fetchApi
                 .post('/client', newCompany)
-                .then(res => {
-                    console.log(res.data);
+                .then(() => {
+                    toast.success('Cliente cadastrado com sucesso!', {
+                        theme: 'colored',
+                    });
                 })
                 .catch(reject => {
-                    console.log(reject.response.data);
+                    toast.error(reject.response.data.message, {
+                        theme: 'colored',
+                    });
+                    return;
                 });
         },
         onSuccess: () => {

@@ -6,6 +6,7 @@ import { PlusCircle } from '@phosphor-icons/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useClient } from '../../hooks/useClient';
 import { useOrder } from '../../hooks/useOrder';
+import { toast } from 'react-toastify';
 
 import './_NewOrder.scss';
 
@@ -41,7 +42,9 @@ export const NewOrder = () => {
         e.preventDefault();
 
         if (!clientSelected || !subject || !status || !content) {
-            console.log('preencha todos os campos');
+            toast.error('preencha todos os campos', {
+                theme: 'colored',
+            });
             return;
         }
 
@@ -54,10 +57,13 @@ export const NewOrder = () => {
                 content,
             });
 
+            toast.success('Chamada editada com sucesso!', {
+                theme: 'colored',
+            });
             return;
         }
 
-        registerOrderMutation.mutate(id, {
+        registerOrderMutation.mutate({
             company_name: clientSelected,
             subject,
             status,
@@ -65,6 +71,9 @@ export const NewOrder = () => {
             createdat: Date.now(),
         });
 
+        toast.success('Chamada criada com sucesso!', {
+            theme: 'colored',
+        });
         setContent('');
         setSubject('Suporte');
         setStatus('Aberto');

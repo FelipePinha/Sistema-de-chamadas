@@ -4,6 +4,7 @@ import { Title } from '../../components/Title/Title';
 import { User } from '@phosphor-icons/react';
 import { useNavigate } from 'react-router-dom';
 import { useClient } from '../../hooks/useClient';
+import { toast } from 'react-toastify';
 
 import './_Customers.scss';
 
@@ -26,7 +27,7 @@ export const Customers = () => {
         e.preventDefault();
 
         if (!name || !cnpj || !address) {
-            console.log('Todos os campos devem ser preenchidos.');
+            toast.error('Todos os campos devem ser preenchidos.');
             return;
         }
 
@@ -74,7 +75,7 @@ export const Customers = () => {
                             <input
                                 type="text"
                                 name="address"
-                                placeholder="Nome da sua empresa"
+                                placeholder="País, cidade"
                                 onChange={e => setAddress(e.target.value)}
                                 value={address}
                             />

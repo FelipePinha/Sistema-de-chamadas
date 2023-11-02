@@ -4,6 +4,7 @@ import { Title } from '../../components/Title/Title';
 import { Gear } from '@phosphor-icons/react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../hooks/useUser';
+import { toast } from 'react-toastify';
 
 import UserPic from '../../assets/user-pic.png';
 import './_Profile.scss';
@@ -27,11 +28,16 @@ export const Profile = () => {
         e.preventDefault();
 
         if (!name) {
-            console.log('O campo "nome" precisa estar preenchido.');
+            toast.error('O campo "nome" precisa estar preenchido.', {
+                theme: 'colored',
+            });
             return;
         }
 
         updateUserMutation.mutate(name);
+        toast.success('Nome alterado com sucesso!', {
+            theme: 'colored',
+        });
     };
 
     return (
