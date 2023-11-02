@@ -12,7 +12,6 @@ import './_Dashboard.scss';
 
 export const Dashboard = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [currentSelectedOrder, setCurrentSelectedOrder] = useState({});
 
     const navigate = useNavigate();
     const { listOrders } = useOrder();
@@ -56,7 +55,6 @@ export const Dashboard = () => {
                                     key={order.id}
                                     order={order}
                                     setModalIsOpen={setModalIsOpen}
-                                    setCurrentSelectedOrder={setCurrentSelectedOrder}
                                 />
                             ))
                         )}
@@ -65,11 +63,7 @@ export const Dashboard = () => {
 
                 <button className="show-more">Buscar Mais</button>
             </section>
-            <Modal
-                modalIsOpen={modalIsOpen}
-                setModalIsOpen={setModalIsOpen}
-                currentSelectedOrder={currentSelectedOrder}
-            />
+            <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
         </div>
     );
 };

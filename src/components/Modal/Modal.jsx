@@ -1,8 +1,11 @@
+import { useContext } from 'react';
+import { OrderContext } from '../../context/OrderContext';
 import { X } from '@phosphor-icons/react';
 import './_Modal.scss';
 
-const Modal = ({ modalIsOpen, setModalIsOpen, currentSelectedOrder }) => {
-    console.log(modalIsOpen);
+const Modal = ({ modalIsOpen, setModalIsOpen }) => {
+    const { selectedOrder } = useContext(OrderContext);
+
     const handleCloseModal = () => {
         setModalIsOpen(false);
     };
@@ -23,29 +26,29 @@ const Modal = ({ modalIsOpen, setModalIsOpen, currentSelectedOrder }) => {
                         <div className="row">
                             <span>
                                 Cliente:
-                                <i> {currentSelectedOrder.company_name}</i>
+                                <i> {selectedOrder.company_name}</i>
                             </span>
                         </div>
                         <div className="row">
                             <span>
                                 Assunto:
-                                <i> {currentSelectedOrder.subject}</i>
+                                <i> {selectedOrder.subject}</i>
                             </span>
                             <span>
                                 Cadastrado em:
-                                <i> {currentSelectedOrder.createdat}</i>
+                                <i> {selectedOrder.createdat}</i>
                             </span>
                         </div>
                         <div className="row">
                             <span>
                                 Status:
-                                <i> {currentSelectedOrder.status}</i>
+                                <i> {selectedOrder.status}</i>
                             </span>
                         </div>
                         <div className="row">
                             <span>
                                 Complemento
-                                <i className="complement">{currentSelectedOrder.content}</i>
+                                <i className="complement">{selectedOrder.content}</i>
                             </span>
                         </div>
                     </div>

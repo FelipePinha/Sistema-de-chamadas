@@ -1,18 +1,29 @@
+import { useContext } from 'react';
+import { OrderContext } from '../../context/OrderContext';
+import { Link, useNavigate } from 'react-router-dom';
+
 import { MagnifyingGlass, PencilSimple } from '@phosphor-icons/react';
-import { Link } from 'react-router-dom';
 import Badge from '../Badge/Badge';
 import './_Order.scss';
 
-const Order = ({ order, setModalIsOpen, setCurrentSelectedOrder }) => {
+const Order = ({ order, setModalIsOpen }) => {
+    const { handleChangeSelectedOrder, selectedOrder } = useContext(OrderContext);
+    const navigate = useNavigate();
     const date = new Date();
     const formattedDate = date.toLocaleString('pt-BR', { timeZone: 'UTC' }).split(',')[0];
 
     const handleOpenModal = () => {
         const { createdat, ...orderWithFormattedDate } = order;
         orderWithFormattedDate.createdat = formattedDate;
-
-        setCurrentSelectedOrder(orderWithFormattedDate);
+        handleChangeSelectedOrder(orderWithFormattedDate);
         setModalIsOpen(true);
+    };
+
+    const handleNavigateToEditOrder = () => {
+        const { createdat, ...orderWithFormattedDate } = order;
+        orderWithFormattedDate.createdat = formattedDate;
+        handleChangeSelectedOrder(orderWithFormattedDate);
+        navigate(`/new/${order.id}`);
     };
 
     return (
@@ -26,7 +37,7 @@ const Order = ({ order, setModalIsOpen, setCurrentSelectedOrder }) => {
                     <button onClick={handleOpenModal}>
                         <MagnifyingGlass size={16} />
                     </button>
-                    <Link className="edit-order-link">
+                    <Link onClick={handleNavigateToEditOrder} className="edit-order-link">
                         <PencilSimple size={16} />
                     </Link>
                 </div>
