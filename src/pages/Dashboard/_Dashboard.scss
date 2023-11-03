@@ -94,5 +94,13 @@ body {
                 background-color: $blue-800;
             }
         }
+
+        .show-more.disable {
+            cursor: not-allowed;
+
+            &:hover {
+                background-color: $gray-700;
+            }
+        }
     }
 }

@@ -12,10 +12,22 @@ import './_Dashboard.scss';
 
 export const Dashboard = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [visible, setVisible] = useState(5);
+    const [loadMoreButtonStatus, setLoadMoreButtonStatus] = useState('');
 
     const navigate = useNavigate();
     const { listOrders } = useOrder();
-    const { data, isLoading } = listOrders();
+    const { data: orders, isLoading } = listOrders();
+
+    const handleLoadMore = () => {
+        if (orders.length <= visible) {
+            setLoadMoreButtonStatus('disable');
+            return;
+        }
+
+        setLoadMoreButtonStatus('');
+        setVisible(prev => prev + 5);
+    };
 
     useEffect(() => {
         const hasUser = localStorage.getItem('user');
@@ -50,18 +62,22 @@ export const Dashboard = () => {
                                 <td>Carregando...</td>
                             </tr>
                         ) : (
-                            data.map(order => (
-                                <Order
-                                    key={order.id}
-                                    order={order}
-                                    setModalIsOpen={setModalIsOpen}
-                                />
-                            ))
+                            orders
+                                .slice(0, visible)
+                                .map(order => (
+                                    <Order
+                                        key={order.id}
+                                        order={order}
+                                        setModalIsOpen={setModalIsOpen}
+                                    />
+                                ))
                         )}
                     </tbody>
                 </table>
 
-                <button className="show-more">Buscar Mais</button>
+                <button onClick={handleLoadMore} className={`show-more ${loadMoreButtonStatus}`}>
+                    Buscar Mais
+                </button>
             </section>
             <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
         </div>
