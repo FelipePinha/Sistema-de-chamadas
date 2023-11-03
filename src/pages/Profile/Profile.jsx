@@ -18,8 +18,7 @@ export const Profile = () => {
     const { updateUserMutation } = useUser();
 
     useEffect(() => {
-        const hasUser = localStorage.getItem('user');
-        if (hasUser === null) {
+        if (localUser === null) {
             navigate('/');
         }
     }, []);
@@ -41,26 +40,34 @@ export const Profile = () => {
     };
 
     return (
-        <div className="profile">
-            <Sidebar />
-            <section className="profile-content">
-                <Title title="Meu perfil" icon={<Gear size={30} />} />
+        <>
+            {localUser && (
+                <div className="profile">
+                    <Sidebar />
+                    <section className="profile-content">
+                        <Title title="Meu perfil" icon={<Gear size={30} />} />
 
-                <form className="profile-form" onSubmit={handleUpdateUserForm}>
-                    <img src={UserPic} />
+                        <form className="profile-form" onSubmit={handleUpdateUserForm}>
+                            <img src={UserPic} />
 
-                    <div className="profile-form-control">
-                        <label htmlFor="username">Nome</label>
-                        <input onChange={e => setName(e.target.value)} type="text" value={name} />
-                    </div>
-                    <div className="profile-form-control">
-                        <label htmlFor="userEmail">Email</label>
-                        <input type="email" value={email} disabled />
-                    </div>
+                            <div className="profile-form-control">
+                                <label htmlFor="username">Nome</label>
+                                <input
+                                    onChange={e => setName(e.target.value)}
+                                    type="text"
+                                    value={name}
+                                />
+                            </div>
+                            <div className="profile-form-control">
+                                <label htmlFor="userEmail">Email</label>
+                                <input type="email" value={email} disabled />
+                            </div>
 
-                    <button type="submit">Salvar</button>
-                </form>
-            </section>
-        </div>
+                            <button type="submit">Salvar</button>
+                        </form>
+                    </section>
+                </div>
+            )}
+        </>
     );
 };

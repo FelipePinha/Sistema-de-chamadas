@@ -7,6 +7,7 @@ import ReactLogo from '../../assets/react.svg';
 import './_Login.scss';
 
 export const SignIn = () => {
+    const hasUser = localStorage.getItem('user');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -14,7 +15,6 @@ export const SignIn = () => {
     const { loginUserMutation } = useUser();
 
     useEffect(() => {
-        const hasUser = localStorage.getItem('user');
         if (hasUser !== null) {
             navigate('/dashboard');
         }
@@ -38,32 +38,36 @@ export const SignIn = () => {
     };
 
     return (
-        <div className="center">
-            <div className="login-box">
-                <header className="login-header">
-                    <img src={ReactLogo} alt="react logo" />
-                </header>
-                <div className="login-content">
-                    <form onSubmit={handleLoginUser}>
-                        <h1>Entrar</h1>
-                        <input
-                            type="email"
-                            placeholder="email@email.com"
-                            onChange={e => setEmail(e.target.value)}
-                            value={email}
-                        />
-                        <input
-                            type="password"
-                            placeholder="******"
-                            onChange={e => setPassword(e.target.value)}
-                            value={password}
-                            autoComplete="off"
-                        />
-                        <button type="submit">Acessar</button>
-                    </form>
-                    <Link to="/signup">Criar uma conta</Link>
+        <>
+            {!hasUser && (
+                <div className="center">
+                    <div className="login-box">
+                        <header className="login-header">
+                            <img src={ReactLogo} alt="react logo" />
+                        </header>
+                        <div className="login-content">
+                            <form onSubmit={handleLoginUser}>
+                                <h1>Entrar</h1>
+                                <input
+                                    type="email"
+                                    placeholder="email@email.com"
+                                    onChange={e => setEmail(e.target.value)}
+                                    value={email}
+                                />
+                                <input
+                                    type="password"
+                                    placeholder="******"
+                                    onChange={e => setPassword(e.target.value)}
+                                    value={password}
+                                    autoComplete="off"
+                                />
+                                <button type="submit">Acessar</button>
+                            </form>
+                            <Link to="/signup">Criar uma conta</Link>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            )}
+        </>
     );
 };

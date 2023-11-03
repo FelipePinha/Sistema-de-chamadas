@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import './_NewOrder.scss';
 
 export const NewOrder = () => {
+    const hasUser = localStorage.getItem('user');
     const navigate = useNavigate();
     const { id } = useParams();
     const { selectedOrder } = useContext(OrderContext);
@@ -25,7 +26,6 @@ export const NewOrder = () => {
     const { data: clients, isLoading } = getClients();
 
     useEffect(() => {
-        const hasUser = localStorage.getItem('user');
         if (hasUser === null) {
             navigate('/');
         }
@@ -80,83 +80,87 @@ export const NewOrder = () => {
     };
 
     return (
-        <div className="new-order">
-            <Sidebar />
-            <section className="new-order-content">
-                <Title title="Novo chamado" icon={<PlusCircle size={30} />} />
-                <form className="new-order-form" onSubmit={handlePostOrder}>
-                    <div className="new-order-form-control">
-                        <label htmlFor="client">Cliente</label>
-                        <select
-                            name="client"
-                            value={clientSelected}
-                            onChange={e => setClientSelected(e.target.value)}
-                        >
-                            {isLoading ? (
-                                <option>Carregando...</option>
-                            ) : clients.length > 0 ? (
-                                clients.map(client => (
-                                    <option key={client.id} value={client.company_name}>
-                                        {client.company_name}
-                                    </option>
-                                ))
-                            ) : (
-                                <option>Nenhuma empresa cadastrada</option>
-                            )}
-                        </select>
-                    </div>
-                    <div className="new-order-form-control">
-                        <label htmlFor="subject">Assunto</label>
-                        <select
-                            name="subject"
-                            value={subject}
-                            onChange={e => setSubject(e.target.value)}
-                        >
-                            <option value="suporte">Suporte</option>
-                            <option value="financeiro">Financeiro</option>
-                            <option value="vista tecnica">Vista técnica</option>
-                        </select>
-                    </div>
-                    <div className="new-order-form-control">
-                        <label htmlFor="status">Status</label>
-                        <div className="status">
-                            <input
-                                onChange={e => setStatus(e.target.value)}
-                                type="radio"
-                                name="status"
-                                value="Aberto"
-                                defaultChecked
-                            />
-                            <span>Em aberto</span>
-                            <input
-                                onChange={e => setStatus(e.target.value)}
-                                type="radio"
-                                name="status"
-                                value="Progresso"
-                            />
-                            <span>Progresso</span>
-                            <input
-                                onChange={e => setStatus(e.target.value)}
-                                type="radio"
-                                name="status"
-                                value="Atendido"
-                            />
-                            <span>Atendido</span>
-                        </div>
-                    </div>
-                    <div className="new-order-form-control">
-                        <label htmlFor="complement">Complemento</label>
-                        <textarea
-                            onChange={e => setContent(e.target.value)}
-                            name="complement"
-                            value={content}
-                            placeholder="descreva seu problema"
-                        />
-                    </div>
+        <>
+            {hasUser && (
+                <div className="new-order">
+                    <Sidebar />
+                    <section className="new-order-content">
+                        <Title title="Novo chamado" icon={<PlusCircle size={30} />} />
+                        <form className="new-order-form" onSubmit={handlePostOrder}>
+                            <div className="new-order-form-control">
+                                <label htmlFor="client">Cliente</label>
+                                <select
+                                    name="client"
+                                    value={clientSelected}
+                                    onChange={e => setClientSelected(e.target.value)}
+                                >
+                                    {isLoading ? (
+                                        <option>Carregando...</option>
+                                    ) : clients.length > 0 ? (
+                                        clients.map(client => (
+                                            <option key={client.id} value={client.company_name}>
+                                                {client.company_name}
+                                            </option>
+                                        ))
+                                    ) : (
+                                        <option>Nenhuma empresa cadastrada</option>
+                                    )}
+                                </select>
+                            </div>
+                            <div className="new-order-form-control">
+                                <label htmlFor="subject">Assunto</label>
+                                <select
+                                    name="subject"
+                                    value={subject}
+                                    onChange={e => setSubject(e.target.value)}
+                                >
+                                    <option value="suporte">Suporte</option>
+                                    <option value="financeiro">Financeiro</option>
+                                    <option value="vista tecnica">Vista técnica</option>
+                                </select>
+                            </div>
+                            <div className="new-order-form-control">
+                                <label htmlFor="status">Status</label>
+                                <div className="status">
+                                    <input
+                                        onChange={e => setStatus(e.target.value)}
+                                        type="radio"
+                                        name="status"
+                                        value="Aberto"
+                                        defaultChecked
+                                    />
+                                    <span>Em aberto</span>
+                                    <input
+                                        onChange={e => setStatus(e.target.value)}
+                                        type="radio"
+                                        name="status"
+                                        value="Progresso"
+                                    />
+                                    <span>Progresso</span>
+                                    <input
+                                        onChange={e => setStatus(e.target.value)}
+                                        type="radio"
+                                        name="status"
+                                        value="Atendido"
+                                    />
+                                    <span>Atendido</span>
+                                </div>
+                            </div>
+                            <div className="new-order-form-control">
+                                <label htmlFor="complement">Complemento</label>
+                                <textarea
+                                    onChange={e => setContent(e.target.value)}
+                                    name="complement"
+                                    value={content}
+                                    placeholder="descreva seu problema"
+                                />
+                            </div>
 
-                    <button type="submit">Registrar</button>
-                </form>
-            </section>
-        </div>
+                            <button type="submit">Registrar</button>
+                        </form>
+                    </section>
+                </div>
+            )}
+        </>
     );
 };
