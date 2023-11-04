@@ -114,9 +114,9 @@ export const NewOrder = () => {
                                     value={subject}
                                     onChange={e => setSubject(e.target.value)}
                                 >
-                                    <option value="suporte">Suporte</option>
-                                    <option value="financeiro">Financeiro</option>
-                                    <option value="vista tecnica">Vista técnica</option>
+                                    <option value="Suporte">Suporte</option>
+                                    <option value="Financeiro">Financeiro</option>
+                                    <option value="Vista tecnica">Vista técnica</option>
                                 </select>
                             </div>
                             <div className="new-order-form-control">
