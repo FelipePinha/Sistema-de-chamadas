@@ -47,16 +47,5 @@ export const useOrder = () => {
         });
     };
 
-    const listSelectedOrder = id => {
-        return useQuery({
-            queryKey: ['orders'],
-            queryFn: async () => {
-                const { data } = await fetchApi.get(`/orders/${id}`);
-
-                return data;
-            },
-        });
-    };
-
-    return { registerOrderMutation, listOrders, listSelectedOrder, updateOrder };
+    return { registerOrderMutation, listOrders, updateOrder };
 };
