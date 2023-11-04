@@ -3,6 +3,7 @@ import { Sidebar } from '../../components/Sidebar/Sidebar';
 import { Title } from '../../components/Title/Title';
 import { Link, useNavigate } from 'react-router-dom';
 import { useOrder } from '../../hooks/useOrder';
+import { toast } from 'react-toastify';
 import Order from '../../components/Order/Order';
 import Modal from '../../components/Modal/Modal';
 
@@ -23,6 +24,7 @@ export const Dashboard = () => {
     const handleLoadMore = () => {
         if (orders.length <= visible) {
             setLoadMoreButtonStatus('disable');
+            toast.error('Não tem mais conteúdo para carregar.', { theme: 'colored' });
             return;
         }
 
