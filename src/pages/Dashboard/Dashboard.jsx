@@ -40,7 +40,7 @@ export const Dashboard = () => {
 
     return (
         <>
-            {hasUser && (
+            {hasUser ? (
                 <div className="dashboard">
                     <Sidebar />
                     <section className="dashboard-content">
@@ -87,6 +87,12 @@ export const Dashboard = () => {
                         </button>
                     </section>
                     <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
+                </div>
+            ) : (
+                <div>
+                    <span>
+                        <strong>Nenhuma chamada foi feita ainda.</strong>
+                    </span>
                 </div>
             )}
         </>
