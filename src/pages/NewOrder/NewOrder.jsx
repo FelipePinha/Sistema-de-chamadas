@@ -116,7 +116,7 @@ export const NewOrder = () => {
                                 >
                                     <option value="Suporte">Suporte</option>
                                     <option value="Financeiro">Financeiro</option>
-                                    <option value="Vista tecnica">Vista técnica</option>
+                                    <option value="Vista tecnica">Visita técnica</option>
                                 </select>
                             </div>
                             <div className="new-order-form-control">
