@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../hooks/useUser';
+import { toast } from 'react-toastify';
 
 import ReactLogo from '../../assets/react.svg';
 import './_Login.scss';
@@ -24,7 +25,9 @@ export const SignIn = () => {
         e.preventDefault();
 
         if (!email || !password) {
-            console.log('Todos os campos devem ser preenchidos');
+            toast.error('Todos os campos devem ser preenchidos', {
+                theme: 'colored',
+            });
             return;
         }
 

@@ -1,4 +1,5 @@
 import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 import fetchApi from '../axios/axiosConfig';
 
 export const useUser = () => {
@@ -14,7 +15,7 @@ export const useUser = () => {
                     navigate('/dashboard');
                 })
                 .catch(reject => {
-                    console.log(reject.response.data);
+                    toast.error(reject.response.data.message, { theme: 'colored' });
                 });
         },
         onSuccess: () => {
@@ -32,7 +33,7 @@ export const useUser = () => {
                     navigate('/dashboard');
                 })
                 .catch(reject => {
-                    console.log(reject.response.data);
+                    toast.error(reject.response.data.message, { theme: 'colored' });
                 });
         },
         onSuccess: () => {
@@ -47,7 +48,6 @@ export const useUser = () => {
 
             await fetchApi.put(`/user/${localUser.id}`, { name: newUsername }).then(res => {
                 localStorage.setItem('user', JSON.stringify(localUser));
-                console.log('nome alterado com sucesso');
             });
         },
         onSuccess: () => {
