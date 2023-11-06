@@ -29,6 +29,7 @@
 
 <ul>
   <li>React</li>
+  <li>React Query v5</li>
   <li>Node</li>
   <li>Fastify</li>
   <li>Postgres</li>
