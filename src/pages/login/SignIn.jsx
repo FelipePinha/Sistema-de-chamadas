@@ -31,10 +31,12 @@ export const SignIn = () => {
             return;
         }
 
+        toast.loading('Carregando...');
         loginUserMutation.mutate({
             email,
             password,
         });
+        toast.dismiss();
 
         setEmail('');
         setPassword('');

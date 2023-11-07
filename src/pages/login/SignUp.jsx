@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../hooks/useUser';
+import { toast } from 'react-toastify';
 
 import ReactLogo from '../../assets/react.svg';
 import './_Login.scss';
@@ -25,15 +26,17 @@ export const SignUp = () => {
         e.preventDefault();
 
         if (!username || !email || !password) {
-            console.log('Todos os campos devem ser preenchidos');
+            toast.error('Todos os campos devem ser preenchidos', { theme: 'colored' });
             return;
         }
 
+        toast.loading('Carregando...', { theme: 'colored' });
         registerUserMutation.mutate({
             username,
             email,
             password,
         });
+        toast.dismiss();
 
         setUsername('');
         setEmail('');
