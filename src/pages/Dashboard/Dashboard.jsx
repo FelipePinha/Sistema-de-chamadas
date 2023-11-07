@@ -33,6 +33,7 @@ export const Dashboard = () => {
     };
 
     useEffect(() => {
+        toast.dismiss();
         if (hasUser === null) {
             navigate('/');
         }

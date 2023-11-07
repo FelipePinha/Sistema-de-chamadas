@@ -21,7 +21,7 @@ export const SignIn = () => {
         }
     });
 
-    const handleLoginUser = e => {
+    const handleLoginUser = async e => {
         e.preventDefault();
 
         if (!email || !password) {
@@ -32,7 +32,7 @@ export const SignIn = () => {
         }
 
         toast.loading('Carregando...');
-        loginUserMutation.mutate({
+        await loginUserMutation.mutateAsync({
             email,
             password,
         });

@@ -22,7 +22,7 @@ export const SignUp = () => {
         }
     });
 
-    const handleRegisterUser = e => {
+    const handleRegisterUser = async e => {
         e.preventDefault();
 
         if (!username || !email || !password) {
@@ -31,7 +31,7 @@ export const SignUp = () => {
         }
 
         toast.loading('Carregando...', { theme: 'colored' });
-        registerUserMutation.mutate({
+        await registerUserMutation.mutateAsync({
             username,
             email,
             password,
