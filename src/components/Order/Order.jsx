@@ -7,21 +7,27 @@ import Badge from '../Badge/Badge';
 import './_Order.scss';
 
 const Order = ({ order, setModalIsOpen }) => {
-    const { handleChangeSelectedOrder, selectedOrder } = useContext(OrderContext);
+    const { handleChangeSelectedOrder } = useContext(OrderContext);
     const navigate = useNavigate();
-    const date = new Date();
-    const formattedDate = date.toLocaleString('pt-BR', { timeZone: 'UTC' }).split(',')[0];
+
+    const [year, month, day] = order.createdat.match(/\d+/g);
+    const formattedDate = `${day}/${month}/${year}`;
+
+    const getOrderWithFormattedDate = () => {
+        const { createdat, ...newOrder } = order;
+        newOrder.createdat = formattedDate;
+
+        return newOrder;
+    };
 
     const handleOpenModal = () => {
-        const { createdat, ...orderWithFormattedDate } = order;
-        orderWithFormattedDate.createdat = formattedDate;
+        const orderWithFormattedDate = getOrderWithFormattedDate();
         handleChangeSelectedOrder(orderWithFormattedDate);
         setModalIsOpen(true);
     };
 
     const handleNavigateToEditOrder = () => {
-        const { createdat, ...orderWithFormattedDate } = order;
-        orderWithFormattedDate.createdat = formattedDate;
+        const orderWithFormattedDate = getOrderWithFormattedDate();
         handleChangeSelectedOrder(orderWithFormattedDate);
         navigate(`/new/${order.id}`);
     };
